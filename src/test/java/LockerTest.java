@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -95,5 +96,16 @@ public class LockerTest {
     Ticket ticket = locker.deliver(box);
 
     assertEquals(4, ticket.getLabel());
+  }
+
+  @Test
+  public void should_has_timestamp_when_generate_a_ticket() {
+    Locker locker = new Locker(4, "A");
+    Box box = locker.getBoxes().get(3);
+
+    Ticket ticket = locker.deliver(box);
+
+    System.out.println(ticket.getTimestamp());
+    assertNotNull(ticket.getTimestamp());
   }
 }
