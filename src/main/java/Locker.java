@@ -18,8 +18,9 @@ public class Locker {
     }
   }
 
-  public void deliver(Box box) {
+  public Ticket deliver(Box box) {
     box.setAvailable(false);
+    return new Ticket(box.getLabel());
   }
 
   public Box findAvailableBox() {

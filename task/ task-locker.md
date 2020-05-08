@@ -20,3 +20,6 @@ Given the locker is not full, when user request a box, it will find a box with m
 
 ## Task 7
 Given the locker is full, when user request a box, it will not find any box.
+
+## Task 8 
+Given a box will be deliveried, it will give user a ticket with the label of box.

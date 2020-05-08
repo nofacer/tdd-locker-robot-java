@@ -67,7 +67,7 @@ public class LockerTest {
 
     Box availableBox = locker.findAvailableBox();
 
-    assertEquals(2,availableBox.getLabel());
+    assertEquals(2, availableBox.getLabel());
   }
 
   @Test
@@ -85,5 +85,15 @@ public class LockerTest {
     Box availableBox = locker.findAvailableBox();
 
     assertNull(availableBox);
+  }
+
+  @Test
+  public void should_get_ticket_with_a_label_and_timestamp_when_deliver_a_box_to_user() {
+    Locker locker = new Locker(4, "A");
+    Box box = locker.getBoxes().get(3);
+
+    Ticket ticket = locker.deliver(box);
+
+    assertEquals(4, ticket.getLabel());
   }
 }
