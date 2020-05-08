@@ -133,8 +133,19 @@ public class LockerTest {
     Box box = locker.getBoxes().get(0);
     locker.deliver(box);
 
-    locker.dealWithRequest();
+    Ticket ticket = locker.dealWithRequest();
 
     assertEquals("Sorry, this locker is full.\n", outContent.toString());
+    assertNull(ticket);
+  }
+
+  @Test
+  public void should_give_ticket_when_deal_user_request_given__available_boxes() {
+    Locker locker = new Locker(1, "A");
+
+    Ticket ticket = locker.dealWithRequest();
+
+    assertNotNull(ticket);
+    assertEquals(1, ticket.getLabel());
   }
 }
