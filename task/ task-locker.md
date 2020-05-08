@@ -26,3 +26,6 @@ Given a box will be deliveried, it will give user a ticket with the label of box
 
 ## Task 9
 Given user get a ticket, it should has validation information based on timestamp.
+
+## Task 10
+Given user is requesting a box, it should print error message, when there are not available boxes.

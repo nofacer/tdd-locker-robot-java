@@ -31,4 +31,11 @@ public class Locker {
     }
     return null;
   }
+
+  public void dealWithRequest() {
+    Box box=findAvailableBox();
+    if(box==null){
+      System.out.println("Sorry, this locker is full.");
+    }
+  }
 }

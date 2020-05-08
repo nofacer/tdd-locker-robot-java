@@ -4,10 +4,28 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+
 public class LockerTest {
+
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private final PrintStream originalOut = System.out;
+
+  @Before
+  public void setUpStreams() {
+    System.setOut(new PrintStream(outContent));
+  }
+
+  @After
+  public void restoreStreams() {
+    System.setOut(originalOut);
+  }
 
   @Test
   public void should_has_n_boxes_when_get_number_of_boxes_given_locker_capacity_is_n() {
@@ -107,5 +125,16 @@ public class LockerTest {
 
     System.out.println(ticket.getTimestamp());
     assertNotNull(ticket.getTimestamp());
+  }
+
+  @Test
+  public void should_print_error_message_when_deal_user_request_given_no_available_boxes() {
+    Locker locker = new Locker(1, "A");
+    Box box = locker.getBoxes().get(0);
+    locker.deliver(box);
+
+    locker.dealWithRequest();
+
+    assertEquals("Sorry, this locker is full.\n", outContent.toString());
   }
 }
