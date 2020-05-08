@@ -11,3 +11,6 @@ Locker should has a unique name.
 
 ## Task 4
 Given the box has been used, when check the status of that box, the `available` status should be `false`.
+
+## Task 5
+Given the box has not been used, when check the status of that box, the `available` status should be `true`.
