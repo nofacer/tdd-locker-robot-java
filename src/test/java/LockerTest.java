@@ -6,7 +6,7 @@ import org.junit.Test;
 public class LockerTest {
 
   @Test
-  public void should_has_boxes_same_amount_with_capacity_when_init_locker_given_certain_capacity() {
+  public void should_has_n_boxes_when_get_number_of_boxes_given_locker_capacity_is_n() {
     Locker locker = new Locker(100);
 
     List<Box> boxes = locker.getBoxes();
