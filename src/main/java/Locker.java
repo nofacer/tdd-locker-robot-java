@@ -20,7 +20,9 @@ public class Locker {
 
   public Ticket deliver(Box box) {
     box.setAvailable(false);
-    return new Ticket(box.getLabel(), Validator.generateTimeStamp());
+    String timestamp = Validator.generateTimeStamp();
+    box.setTimestamp(timestamp);
+    return new Ticket(box.getLabel(), timestamp);
   }
 
   public Box findAvailableBox() {

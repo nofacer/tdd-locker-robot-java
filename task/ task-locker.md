@@ -32,3 +32,6 @@ Given user is requesting a box, it should print error message, when there are no
 
 # Task 11
 Given user is requesting a box, it should give user a ticket, when there are available boxes.
+
+# Task 12
+Give there is available box, it should record a timestamp for that box same as in the ticket, when locker deliver a box to user.

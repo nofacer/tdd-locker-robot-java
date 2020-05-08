@@ -140,12 +140,23 @@ public class LockerTest {
   }
 
   @Test
-  public void should_give_ticket_when_deal_user_request_given__available_boxes() {
+  public void should_give_ticket_when_deal_user_request_given_available_boxes() {
     Locker locker = new Locker(1, "A");
 
     Ticket ticket = locker.dealWithRequest();
 
     assertNotNull(ticket);
     assertEquals(1, ticket.getLabel());
+  }
+
+  @Test
+  public void should_record_same_timestamp_as_ticket_when_locker_delivery_a_box() {
+    Locker locker = new Locker(1, "A");
+    Box box = locker.getBoxes().get(0);
+
+    Ticket ticket = locker.deliver(box);
+
+    String timestampInTicket = ticket.getTimestamp();
+    assertEquals(timestampInTicket, box.getTimestamp());
   }
 }
