@@ -11,6 +11,7 @@ public class Locker {
 
   public Locker(int capacity, String name) {
     this.name = name;
+    this.capacity = capacity;
     boxes = new ArrayList<>();
     for (int i = 0; i < capacity; i++) {
       this.boxes.add(new Box(i + 1));
@@ -19,5 +20,14 @@ public class Locker {
 
   public void deliver(Box box) {
     box.setAvailable(false);
+  }
+
+  public Box findAvailableBox() {
+    for (int i = 0; i < capacity; i++) {
+      if (this.boxes.get(i).isAvailable()) {
+        return this.boxes.get(i);
+      }
+    }
+    return null;
   }
 }

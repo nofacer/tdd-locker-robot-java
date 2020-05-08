@@ -14,3 +14,9 @@ Given the box has been used, when check the status of that box, the `available` 
 
 ## Task 5
 Given the box has not been used, when check the status of that box, the `available` status should be `true`.
+
+## Task 6
+Given the locker is not full, when user request a box, it will find a box with minimal label from all available boxes to present.
+
+## Task 7
+Given the locker is full, when user request a box, it will not find any box.

@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -54,5 +55,35 @@ public class LockerTest {
     Box box = locker.getBoxes().get(4);
 
     assertTrue(box.isAvailable());
+  }
+
+  @Test
+  public void should_find_minimal_label_when_request_box_given_there_are_available_boxes() {
+    Locker locker = new Locker(4, "A");
+    Box box1 = locker.getBoxes().get(0);
+    Box box4 = locker.getBoxes().get(3);
+    locker.deliver(box1);
+    locker.deliver(box4);
+
+    Box availableBox = locker.findAvailableBox();
+
+    assertEquals(2,availableBox.getLabel());
+  }
+
+  @Test
+  public void should_find_null_when_request_box_given_there_are_not_available_boxes() {
+    Locker locker = new Locker(4, "A");
+    Box box1 = locker.getBoxes().get(0);
+    Box box2 = locker.getBoxes().get(1);
+    Box box3 = locker.getBoxes().get(2);
+    Box box4 = locker.getBoxes().get(3);
+    locker.deliver(box1);
+    locker.deliver(box2);
+    locker.deliver(box3);
+    locker.deliver(box4);
+
+    Box availableBox = locker.findAvailableBox();
+
+    assertNull(availableBox);
   }
 }
