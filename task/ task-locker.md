@@ -8,3 +8,6 @@ Given the capacity of a locker is n, the label of boxes in it should be from 1 t
 
 ## Task 3
 Locker should has a unique name.
+
+## Task 4
+Given the box has been used, when check the status of that box, the `available` status should be `false`.

@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.List;
 import org.junit.Test;
@@ -33,5 +34,15 @@ public class LockerTest {
     String name = locker.getName();
 
     assertEquals("Locker_A", name);
+  }
+
+  @Test
+  public void should_be_false_when_check_box_status_given_that_box_is_being_used() {
+    Locker locker = new Locker(10, "Locker_A");
+
+    Box box = locker.getBoxes().get(4);
+    locker.deliver(box);
+
+    assertFalse(box.isAvailable());
   }
 }

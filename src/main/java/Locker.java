@@ -16,4 +16,8 @@ public class Locker {
       this.boxes.add(new Box(i + 1));
     }
   }
+
+  public void deliver(Box box) {
+    box.setAvailable(false);
+  }
 }
