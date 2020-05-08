@@ -9,9 +9,9 @@ public class Locker {
   private List<Box> boxes;
 
   public Locker(int capacity) {
-    boxes = new ArrayList<Box>();
+    boxes = new ArrayList<>();
     for (int i = 0; i < capacity; i++) {
-      this.boxes.add(new Box());
+      this.boxes.add(new Box(i + 1));
     }
   }
 }

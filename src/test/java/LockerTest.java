@@ -13,4 +13,16 @@ public class LockerTest {
 
     assertEquals(100, boxes.size());
   }
+
+  @Test
+  public void should_be_from_1_to_n_when_get_the_label_of_box_given_a_locker_with_capacity_n() {
+    Locker locker = new Locker(10);
+
+    List<Box> boxes = locker.getBoxes();
+    Box firstBox = boxes.get(0);
+    Box lastBox = boxes.get(9);
+
+    assertEquals(1, firstBox.getLabel());
+    assertEquals(10, lastBox.getLabel());
+  }
 }
