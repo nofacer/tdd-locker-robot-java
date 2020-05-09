@@ -35,3 +35,12 @@ Given user is requesting a box, it should give user a ticket, when there are ava
 
 # Task 12
 Give there is available box, it should record a timestamp for that box same as in the ticket, when locker deliver a box to user.
+
+# Task 13
+Given user is using  ticket, it should print success message and empty box when there are corresponding box
+
+# Task 14
+Given user is using a ticket, it should print error message when the corresponding box is empty
+
+# Task 14
+Given user is using a ticket, it should print error message when the timestamp is not same on ticket and the corresponding ticket.

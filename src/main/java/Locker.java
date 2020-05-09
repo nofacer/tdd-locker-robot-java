@@ -18,6 +18,21 @@ public class Locker {
     }
   }
 
+  public void useTicket(Ticket ticket) {
+    int boxIndex = ticket.getLabel() - 1;
+    Box requestBox = this.boxes.get(boxIndex);
+    if (requestBox.isAvailable()) {
+      String alert = String.format("Error, the box %d is empty", ticket.getLabel());
+      System.out.println(alert);
+    } else if (requestBox.getTimestamp() != ticket.getTimestamp()) {
+      System.out.println("Error, the ticket is not valid");
+    }else {
+      requestBox.reset();
+      String receipt = String.format("Success! Take your bag in box %d.", ticket.getLabel());
+      System.out.println(receipt);
+    }
+  }
+
   public Ticket deliver(Box box) {
     box.setAvailable(false);
     String timestamp = Validator.generateTimeStamp();

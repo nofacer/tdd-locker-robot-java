@@ -159,4 +159,35 @@ public class LockerTest {
     String timestampInTicket = ticket.getTimestamp();
     assertEquals(timestampInTicket, box.getTimestamp());
   }
+
+  @Test
+  public void should_print_success_message_and_empty_box_when_box_on_ticket_is_found() {
+    Locker locker = new Locker(5, "A");
+    locker.dealWithRequest();
+    Ticket ticket = locker.dealWithRequest();
+    Box box = locker.getBoxes().get(1);
+    locker.useTicket(ticket);
+    assertEquals("Success! Take your bag in box 2.\n", outContent.toString());
+    assertNull(box.getTimestamp());
+    assertTrue(box.isAvailable());
+  }
+
+  @Test
+  public void should_print_error_message_when_corresponding_box_is_empty() {
+    Locker locker = new Locker(5, "A");
+    Ticket ticket = new Ticket(2, "Sat Jan 01 12:00:00 CST 2020");
+    locker.useTicket(ticket);
+    assertEquals("Error, the box 2 is empty\n", outContent.toString());
+  }
+
+  @Test
+  public void should_pring_error_message_when_timestamp_is_not_same() {
+    Locker locker = new Locker(5, "A");
+    locker.dealWithRequest();
+    Ticket ticket = new Ticket(1, "Sat Jan 01 12:00:00 CST 2020");
+    locker.useTicket(ticket);
+    assertEquals("Error, the ticket is not valid\n", outContent.toString());
+
+  }
+
 }

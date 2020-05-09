@@ -11,4 +11,9 @@ public class Box {
     this.label = label;
     this.available = true;
   }
+
+  public void reset() {
+    this.available = true;
+    this.timestamp = null;
+  }
 }
