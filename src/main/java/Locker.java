@@ -21,10 +21,7 @@ public class Locker {
   public void useTicket(Ticket ticket) {
     int boxIndex = ticket.getLabel() - 1;
     Box requestBox = this.boxes.get(boxIndex);
-    if (requestBox.isAvailable()) {
-      String alert = String.format("Error, the box %d is empty", ticket.getLabel());
-      System.out.println(alert);
-    } else if (requestBox.getTimestamp() != ticket.getTimestamp()) {
+    if (!requestBox.getTimestamp().equals(ticket.getTimestamp())) {
       System.out.println("Error, the ticket is not valid");
     }else {
       requestBox.reset();

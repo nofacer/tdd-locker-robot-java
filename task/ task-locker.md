@@ -40,7 +40,4 @@ Give there is available box, it should record a timestamp for that box same as i
 Given user is using  ticket, it should print success message and empty box when there are corresponding box
 
 # Task 14
-Given user is using a ticket, it should print error message when the corresponding box is empty
-
-# Task 15
 Given user is using a ticket, it should print error message when the timestamp is not same on ticket and the corresponding ticket.
