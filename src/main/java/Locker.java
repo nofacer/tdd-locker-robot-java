@@ -18,7 +18,16 @@ public class Locker {
     }
   }
 
-  public void useTicket(Ticket ticket) {
+  public Ticket savePackage() {
+    Box box = findAvailableBox();
+    if (box == null) {
+      System.out.println("Sorry, this locker is full.");
+      return null;
+    }
+    return deliver(box);
+  }
+
+  public void getPackage(Ticket ticket) {
     int boxIndex = ticket.getLabel() - 1;
     Box requestBox = this.boxes.get(boxIndex);
     if (!requestBox.getTimestamp().equals(ticket.getTimestamp())) {
@@ -44,14 +53,5 @@ public class Locker {
       }
     }
     return null;
-  }
-
-  public Ticket dealWithRequest() {
-    Box box = findAvailableBox();
-    if (box == null) {
-      System.out.println("Sorry, this locker is full.");
-      return null;
-    }
-    return deliver(box);
   }
 }
