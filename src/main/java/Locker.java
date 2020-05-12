@@ -39,14 +39,14 @@ public class Locker {
     }
   }
 
-  public Ticket deliver(Box box) {
+   private Ticket deliver(Box box) {
     box.setAvailable(false);
     String timestamp = Validator.generateTimeStamp();
     box.setTimestamp(timestamp);
     return new Ticket(box.getLabel(), timestamp);
   }
 
-  public Box findAvailableBox() {
+  private Box findAvailableBox() {
     for (int i = 0; i < capacity; i++) {
       if (this.boxes.get(i).isAvailable()) {
         return this.boxes.get(i);
