@@ -3,7 +3,7 @@
 ## Save packages
 
 * Given a locker has available boxes, when users check in bags, then the locker should give user a valid ticket.
-* Given a locker does not have available boxes, when users check in bags, then an error message will be shown that the lcoker is full.
+* Given a locker does not have available boxes, when users check in bags, then an error message will be shown that the locker is full.
 
 ## Get packages
 
