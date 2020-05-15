@@ -21,7 +21,11 @@ public class LockerRobot {
   }
 
   public boolean getPackage(Ticket ticket) {
-    //TODO: finish code
+    for (Locker locker : lockers) {
+      if (ticket.getLockerName().equals(locker.getName())) {
+        return locker.getPackage(ticket);
+      }
+    }
     return false;
   }
 }
