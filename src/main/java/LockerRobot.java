@@ -11,7 +11,12 @@ public class LockerRobot {
   }
 
   public Ticket savePackageInOrder() {
-    //TODO: finish code
+    for (Locker locker : lockers) {
+      Ticket maybeTicket = locker.savePackage();
+      if (maybeTicket != null) {
+        return maybeTicket;
+      }
+    }
     return null;
   }
 

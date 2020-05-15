@@ -26,10 +26,12 @@ public class LockerRobotTest {
       LockerRobot robot = new LockerRobot(lockers);
 
       Ticket ticket = robot.savePackageInOrder();
+      Ticket ticket2 = robot.savePackageInOrder();
 
       assertEquals("A", ticket.getLockerName());
       assertEquals(1, ticket.getLabel());
-
+      assertEquals("B", ticket2.getLockerName());
+      assertEquals(1, ticket2.getLabel());
     }
 
     @Test
