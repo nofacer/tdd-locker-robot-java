@@ -21,7 +21,7 @@ public class LockerTest {
     Locker locker = new Locker("A",0);
 
     Ticket ticket = locker.savePackage();
-    System.out.println(ticket);
+
     assertNull(ticket);
   }
 
