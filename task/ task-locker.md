@@ -8,3 +8,4 @@
 ## Get packages
 
 * Given a user has a ticket, when this user uses this ticket on the locker, then the locker should open related box.
+
