@@ -4,8 +4,10 @@ import lombok.Data;
 public class Ticket {
 
   private int label;
+  private String lockerName;
 
-  public Ticket(int label) {
+  public Ticket(String lockerName, int label) {
+    this.lockerName = lockerName;
     this.label = label;
   }
 

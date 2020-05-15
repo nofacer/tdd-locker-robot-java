@@ -5,10 +5,12 @@ import lombok.Data;
 @Data
 public class Locker {
 
+  private String name;
   private int capacity;
   private List<Box> boxes;
 
-  public Locker(int capacity) {
+  public Locker(String name, int capacity) {
+    this.name = name;
     this.capacity = capacity;
     boxes = new ArrayList<>();
     for (int i = 0; i < capacity; i++) {
@@ -34,7 +36,7 @@ public class Locker {
 
   private Ticket deliver(Box box) {
     box.setAvailable(false);
-    return new Ticket(box.getLabel());
+    return new Ticket(this.name, box.getLabel());
   }
 
   private Box findAvailableBox() {
