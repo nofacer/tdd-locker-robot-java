@@ -30,6 +30,7 @@ public class LockerRobotTest {
 
       assertEquals("A", ticket.getLockerName());
       assertEquals(1, ticket.getLabel());
+      //保证case独立，只test状态。不要连续操作，相互依赖
       assertEquals("B", ticket2.getLockerName());
       assertEquals(1, ticket2.getLabel());
     }
