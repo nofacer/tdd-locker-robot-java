@@ -1,6 +1,6 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,17 +29,17 @@ public class LockerTest {
   }
 
   @Test
-  public void should_open_related_box_when_user_user_a_ticket_given_a_user_has_a_ticket()
+  public void should_give_package_back_when_user_use_ticket_given_user_has_a_valid_ticket()
       throws ErrorMessageException {
     //given
-    Locker locker = new Locker("A", 5);
+    Locker locker = new Locker("A", 1);
     Package aPackage = new Package();
+    Ticket ticket = locker.savePackage(aPackage);
 
     //when
-    Ticket ticket = locker.savePackage(aPackage);
-    boolean getBagSuccess = locker.getPackage(ticket);
+    Package returnedPackage = locker.getPackage(ticket);
 
     //then
-    assertTrue(getBagSuccess);
+    assertEquals(aPackage, returnedPackage);
   }
 }

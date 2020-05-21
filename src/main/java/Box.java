@@ -14,6 +14,7 @@ public class Box {
 
   public void reset() {
     this.available = true;
+    this.aPackage = null;
   }
 }
 

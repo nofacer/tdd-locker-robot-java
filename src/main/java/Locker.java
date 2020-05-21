@@ -26,11 +26,12 @@ public class Locker {
     return deliver(box, aPackage);
   }
 
-  public boolean getPackage(Ticket ticket) {
+  public Package getPackage(Ticket ticket) {
     int boxIndex = ticket.getLabel() - 1;
     Box requestBox = this.boxes.get(boxIndex);
+    Package aPackage = requestBox.getAPackage();
     requestBox.reset();
-    return true;
+    return aPackage;
   }
 
   private Ticket deliver(Box box, Package aPackage) {
