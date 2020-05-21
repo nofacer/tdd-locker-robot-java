@@ -22,8 +22,10 @@ public class LockerRobotTest {
     lockers.add(locker2);
     LockerRobot lockerRobot = new LockerRobot(lockers);
     Package aPackage = new Package();
+
     //when
     Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+
     //then
     assertNotNull(ticket);
     int lockerLabel = lockerRobot.getTicketLockerMap().get(System.identityHashCode(ticket));
@@ -41,8 +43,10 @@ public class LockerRobotTest {
     lockers.add(locker2);
     LockerRobot lockerRobot = new LockerRobot(lockers);
     Package aPackage = new Package();
+
     //when
     Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+
     //then
     assertNotNull(ticket);
     int lockerLabel = lockerRobot.getTicketLockerMap().get(System.identityHashCode(ticket));
@@ -60,6 +64,7 @@ public class LockerRobotTest {
     lockers.add(locker2);
     LockerRobot lockerRobot = new LockerRobot(lockers);
     Package aPackage = new Package();
+
     //when,then
     assertThrows(ErrorMessageException.class, () -> lockerRobot.savePackageInOrder(aPackage));
   }
@@ -76,8 +81,10 @@ public class LockerRobotTest {
     LockerRobot lockerRobot = new LockerRobot(lockers);
     Package aPackage = new Package();
     Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+
     //when
     Package returnedPackage = lockerRobot.getPackage(ticket);
+
     //then
     assertEquals(System.identityHashCode(aPackage), System.identityHashCode(returnedPackage));
   }
@@ -95,6 +102,7 @@ public class LockerRobotTest {
     Package aPackage = new Package();
     Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
     Ticket fakeTicket = new Ticket();
+
     //when,then
     assertThrows(ErrorMessageException.class, () -> lockerRobot.getPackage(fakeTicket));
   }
