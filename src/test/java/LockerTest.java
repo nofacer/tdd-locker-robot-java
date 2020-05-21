@@ -44,7 +44,7 @@ public class LockerTest {
     Package returnedPackage = locker.getPackage(ticket);
 
     //then
-    assertEquals(aPackage, returnedPackage);
+    assertEquals(System.identityHashCode(aPackage), System.identityHashCode(returnedPackage));
   }
 
   @Test
