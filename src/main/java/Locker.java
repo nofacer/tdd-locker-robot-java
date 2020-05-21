@@ -18,12 +18,12 @@ public class Locker {
     }
   }
 
-  public Ticket savePackage() throws ErrorMessageException {
+  public Ticket savePackage(Package aPackage) throws ErrorMessageException {
     Box box = findAvailableBox();
     if (box == null) {
       throw new ErrorMessageException("The locker is full");
     }
-    return deliver(box);
+    return deliver(box, aPackage);
   }
 
   public boolean getPackage(Ticket ticket) {
@@ -33,8 +33,8 @@ public class Locker {
     return true;
   }
 
-  private Ticket deliver(Box box) {
-    box.setAvailable(false);
+  private Ticket deliver(Box box, Package aPackage) {
+    box.setAPackage(aPackage);
     return new Ticket(this.name, box.getLabel());
   }
 

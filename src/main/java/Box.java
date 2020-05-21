@@ -5,6 +5,7 @@ public class Box {
 
   private int label;
   private boolean available;
+  private Package aPackage;
 
   public Box(int label) {
     this.label = label;
@@ -15,3 +16,4 @@ public class Box {
     this.available = true;
   }
 }
+
