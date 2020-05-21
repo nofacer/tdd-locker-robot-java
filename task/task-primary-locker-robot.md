@@ -1,4 +1,4 @@
-## Locker-robot Tasks
+## Primary Locker-robot Tasks
 ## Save packages
 
 * Given the first locker and second locker is not full, when user saves package, then the locker-robot should save pachage to first locker and give user a ticket.
