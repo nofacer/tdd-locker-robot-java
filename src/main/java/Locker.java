@@ -18,11 +18,10 @@ public class Locker {
     }
   }
 
-  public Ticket savePackage() {
+  public Ticket savePackage() throws ErrorMessageException {
     Box box = findAvailableBox();
     if (box == null) {
-      System.out.println("Sorry, this locker is full.");
-      return null;
+      throw new ErrorMessageException("The locker is full");
     }
     return deliver(box);
   }

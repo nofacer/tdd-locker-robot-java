@@ -10,7 +10,7 @@ public class LockerRobot {
     this.lockers = lockers;
   }
 
-  public Ticket savePackageInOrder() {
+  public Ticket savePackageInOrder() throws ErrorMessageException {
     for (Locker locker : lockers) {
       Ticket maybeTicket = locker.savePackage();
       if (maybeTicket != null) {
