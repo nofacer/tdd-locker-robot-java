@@ -1,25 +1,32 @@
-//import lombok.Data;
-//
-//import java.util.List;
-//
-//@Data
-//public class LockerRobot {
-//  private List<Locker> lockers;
-//
-//  public LockerRobot(List<Locker> lockers) {
-//    this.lockers = lockers;
-//  }
-//
-//  public Ticket savePackageInOrder() throws exceptions.ErrorMessageException {
-//    for (Locker locker : lockers) {
-//      Ticket maybeTicket = locker.savePackage();
-//      if (maybeTicket != null) {
-//        return maybeTicket;
-//      }
-//    }
-//    return null;
-//  }
-//
+import exceptions.ErrorMessageException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lombok.Data;
+
+@Data
+public class LockerRobot {
+
+  private List<Locker> lockers;
+  private Map<Integer, Integer> ticketLockerMap = new HashMap<>();
+
+  public LockerRobot(List<Locker> lockers) {
+    this.lockers = lockers;
+  }
+
+  public Ticket savePackageInOrder(Package aPackage) throws exceptions.ErrorMessageException {
+    int i = 0;
+    for (Locker locker : lockers) {
+      if (locker.getCapacity() > 0) {
+        Ticket ticket = locker.savePackage(aPackage);
+        ticketLockerMap.put(System.identityHashCode(ticket), i);
+        return ticket;
+      }
+      i++;
+    }
+    throw new ErrorMessageException("All lockers are full");
+  }
+
 //  public boolean getPackage(Ticket ticket) {
 //    for (Locker locker : lockers) {
 //      if (ticket.getLockerName().equals(locker.getName())) {
@@ -28,4 +35,4 @@
 //    }
 //    return false;
 //  }
-//}
+}
