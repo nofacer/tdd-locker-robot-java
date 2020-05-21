@@ -3,7 +3,7 @@
 
 * Given the first locker and second locker is not full, when user saves package, then the locker-robot should save pachage to first locker and give user a ticket.
 * Given the first locker is full and second locker is not full, when user saves package, then the locker-robot should save package to second locker and give user a ticket.
-* Given none of the lockers is available, when users check in bags, then the locker-robot should not give user a ticket and throw an error.
+* Given none of the lockers is available, when users check in bags, then the locker-robot should throw an error.
 
 ## Get packages
 

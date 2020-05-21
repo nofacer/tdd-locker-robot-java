@@ -1,6 +1,7 @@
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import exceptions.ErrorMessageException;
 import java.util.ArrayList;
@@ -48,21 +49,20 @@ public class LockerRobotTest {
     assertEquals(1, lockerLabel);
   }
 
-//  @Test
-//  public void should_give_user_a_ticket_in_ordered_locker_when_users_check_in_packages_given_lockerRobot_finds_available_boxes()
-//      throws exceptions.ErrorMessageException {
-//    LockerRobot robot = new LockerRobot(lockers);
-//
-//    Ticket ticket = robot.savePackageInOrder();
-//    Ticket ticket2 = robot.savePackageInOrder();
-//
-//    assertEquals("A", ticket.getLockerName());
-//    assertEquals(1, ticket.getLabel());
-//    //保证case独立，只test状态。不要连续操作，相互依赖
-//    assertEquals("B", ticket2.getLockerName());
-//    assertEquals(1, ticket2.getLabel());
-//  }
-//
+  @Test
+  void should_throw_error_when_save_pacakge_given_all_lockers_are_full()
+      throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(0);
+    Locker locker2 = new Locker(0);
+    lockers.add(locker1);
+    lockers.add(locker2);
+    LockerRobot lockerRobot = new LockerRobot(lockers);
+    Package aPackage = new Package();
+    //when,then
+    assertThrows(ErrorMessageException.class, () -> lockerRobot.savePackageInOrder(aPackage));
+  }
 //  @Test
 //  public void should_not_give_user_a_ticket_when_users_check_in_packages_given_lockerRobot_cannot_find_available_boxes()
 //      throws exceptions.ErrorMessageException {
