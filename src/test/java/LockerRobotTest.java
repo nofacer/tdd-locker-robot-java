@@ -63,41 +63,41 @@ public class LockerRobotTest {
     //when,then
     assertThrows(ErrorMessageException.class, () -> lockerRobot.savePackageInOrder(aPackage));
   }
-//  @Test
-//  public void should_not_give_user_a_ticket_when_users_check_in_packages_given_lockerRobot_cannot_find_available_boxes()
-//      throws exceptions.ErrorMessageException {
-//    LockerRobot robot = new LockerRobot(lockers);
-//
-//    robot.savePackageInOrder();
-//    robot.savePackageInOrder();
-//    robot.savePackageInOrder();
-//    Ticket ticket = robot.savePackageInOrder();
-//
-//    assertNull(ticket);
-//
-//  }
-//
-//  @Test
-//  public void should_open_related_box_when_user_get_package_given_a_user_has_a_valid_ticket()
-//      throws exceptions.ErrorMessageException {
-//    LockerRobot robot = new LockerRobot(lockers);
-//    Ticket ticket = robot.savePackageInOrder();
-//
-//    boolean canGetBag = robot.getPackage(ticket);
-//
-//    assertTrue(canGetBag);
-//  }
-//
-//  @Test
-//  public void should_not_open_box_when_user_get_a_package_given_a_user_has_an_invalid_ticket() {
-//    LockerRobot robot = new LockerRobot(lockers);
-//    Ticket ticket = new Ticket("C", 2);
-//
-//    boolean canGetBag = robot.getPackage(ticket);
-//
-//    assertFalse(canGetBag);
-//  }
 
+  @Test
+  public void should_give_package_back_when_user_use_ticket_given_user_has_a_valid_ticket()
+      throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(5);
+    Locker locker2 = new Locker(3);
+    lockers.add(locker1);
+    lockers.add(locker2);
+    LockerRobot lockerRobot = new LockerRobot(lockers);
+    Package aPackage = new Package();
+    Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+    //when
+    Package returnedPackage = lockerRobot.getPackage(ticket);
+    //then
+    assertEquals(System.identityHashCode(aPackage), System.identityHashCode(returnedPackage));
+  }
+
+  @Test
+  public void should_throw_error_when_user_use_ticket_given_user_has_an_invalid_ticket()
+      throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(5);
+    Locker locker2 = new Locker(3);
+    lockers.add(locker1);
+    lockers.add(locker2);
+    LockerRobot lockerRobot = new LockerRobot(lockers);
+    Package aPackage = new Package();
+    Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+    Ticket fakeTicket = new Ticket();
+    //when,then
+    assertThrows(ErrorMessageException.class, () -> lockerRobot.getPackage(fakeTicket));
+  }
 }
 
 

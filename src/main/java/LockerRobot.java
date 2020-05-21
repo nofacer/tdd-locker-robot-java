@@ -27,12 +27,17 @@ public class LockerRobot {
     throw new ErrorMessageException("All lockers are full");
   }
 
-//  public boolean getPackage(Ticket ticket) {
-//    for (Locker locker : lockers) {
-//      if (ticket.getLockerName().equals(locker.getName())) {
-//        return locker.getPackage(ticket);
-//      }
-//    }
-//    return false;
-//  }
+  public Package getPackage(Ticket ticket) throws ErrorMessageException {
+    Package aPackage = null;
+    for (Locker locker : lockers) {
+      try {
+        aPackage = locker.getPackage(ticket);
+      } catch (ErrorMessageException ignored) {
+      }
+    }
+    if (aPackage == null) {
+      throw new ErrorMessageException("The ticket is invalid");
+    }
+    return aPackage;
+  }
 }
