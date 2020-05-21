@@ -26,7 +26,7 @@
 //
 //  @Test
 //  public void should_give_user_a_ticket_in_ordered_locker_when_users_check_in_packages_given_lockerRobot_finds_available_boxes()
-//      throws ErrorMessageException {
+//      throws exceptions.ErrorMessageException {
 //    LockerRobot robot = new LockerRobot(lockers);
 //
 //    Ticket ticket = robot.savePackageInOrder();
@@ -41,7 +41,7 @@
 //
 //  @Test
 //  public void should_not_give_user_a_ticket_when_users_check_in_packages_given_lockerRobot_cannot_find_available_boxes()
-//      throws ErrorMessageException {
+//      throws exceptions.ErrorMessageException {
 //    LockerRobot robot = new LockerRobot(lockers);
 //
 //    robot.savePackageInOrder();
@@ -55,7 +55,7 @@
 //
 //  @Test
 //  public void should_open_related_box_when_user_get_package_given_a_user_has_a_valid_ticket()
-//      throws ErrorMessageException {
+//      throws exceptions.ErrorMessageException {
 //    LockerRobot robot = new LockerRobot(lockers);
 //    Ticket ticket = robot.savePackageInOrder();
 //

@@ -10,7 +10,7 @@
 //    this.lockers = lockers;
 //  }
 //
-//  public Ticket savePackageInOrder() throws ErrorMessageException {
+//  public Ticket savePackageInOrder() throws exceptions.ErrorMessageException {
 //    for (Locker locker : lockers) {
 //      Ticket maybeTicket = locker.savePackage();
 //      if (maybeTicket != null) {

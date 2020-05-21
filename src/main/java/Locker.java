@@ -1,50 +1,35 @@
-import java.util.ArrayList;
-import java.util.List;
+import exceptions.ErrorMessageException;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.Data;
 
 @Data
 public class Locker {
 
-  private String name;
   private int capacity;
-  private List<Box> boxes;
+  private Map<Integer, Package> record = new HashMap<>();
 
-  public Locker(String name, int capacity) {
-    this.name = name;
+  public Locker(int capacity) {
     this.capacity = capacity;
-    boxes = new ArrayList<>();
-    for (int i = 0; i < capacity; i++) {
-      this.boxes.add(new Box(i + 1));
-    }
   }
 
   public Ticket savePackage(Package aPackage) throws ErrorMessageException {
-    Box box = findAvailableBox();
-    if (box == null) {
+    if (this.capacity <= 0) {
       throw new ErrorMessageException("The locker is full");
     }
-    return deliver(box, aPackage);
+    Ticket ticket = new Ticket();
+    this.record.put(System.identityHashCode(ticket), aPackage);
+    this.capacity -= 1;
+    return ticket;
   }
 
-  public Package getPackage(Ticket ticket) {
-    int boxIndex = ticket.getLabel() - 1;
-    Box requestBox = this.boxes.get(boxIndex);
-    Package aPackage = requestBox.getAPackage();
-    requestBox.reset();
-    return aPackage;
-  }
-
-  private Ticket deliver(Box box, Package aPackage) {
-    box.setAPackage(aPackage);
-    return new Ticket(this.name, box.getLabel());
-  }
-
-  private Box findAvailableBox() {
-    for (int i = 0; i < capacity; i++) {
-      if (this.boxes.get(i).isAvailable()) {
-        return this.boxes.get(i);
-      }
+  public Package getPackage(Ticket ticket) throws ErrorMessageException {
+    Package aPackage = this.record.get(System.identityHashCode(ticket));
+    if (aPackage == null) {
+      throw new ErrorMessageException("The ticket is invalid");
     }
-    return null;
+    record.remove(System.identityHashCode(ticket));
+    this.capacity += 1;
+    return aPackage;
   }
 }
