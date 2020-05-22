@@ -5,12 +5,12 @@ import java.util.Map;
 import lombok.Data;
 
 @Data
-public class LockerRobot {
+public class PrimaryLockerRobot {
 
   private List<Locker> lockers;
   private Map<Integer, Integer> ticketLockerMap = new HashMap<>();
 
-  public LockerRobot(List<Locker> lockers) {
+  public PrimaryLockerRobot(List<Locker> lockers) {
     this.lockers = lockers;
   }
 

@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 
-public class LockerRobotTest {
+public class PrimaryLockerRobotTest {
 
   @Test
   void should_save_to_first_locker_and_give_a_ticket_when_user_save_package_given_first_and_second_locker_is_not_full()
@@ -20,15 +20,15 @@ public class LockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    LockerRobot lockerRobot = new LockerRobot(lockers);
+    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
     Package aPackage = new Package();
 
     //when
-    Ticket ticket = lockerRobot.savePackage(aPackage);
+    Ticket ticket = primaryLockerRobot.savePackage(aPackage);
 
     //then
     assertNotNull(ticket);
-    int lockerLabel = lockerRobot.getLockerLabelByTicket(ticket);
+    int lockerLabel = primaryLockerRobot.getLockerLabelByTicket(ticket);
     assertEquals(0, lockerLabel);
   }
 
@@ -41,15 +41,15 @@ public class LockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    LockerRobot lockerRobot = new LockerRobot(lockers);
+    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
     Package aPackage = new Package();
 
     //when
-    Ticket ticket = lockerRobot.savePackage(aPackage);
+    Ticket ticket = primaryLockerRobot.savePackage(aPackage);
 
     //then
     assertNotNull(ticket);
-    int lockerLabel = lockerRobot.getTicketLockerMap().get(System.identityHashCode(ticket));
+    int lockerLabel = primaryLockerRobot.getTicketLockerMap().get(System.identityHashCode(ticket));
     assertEquals(1, lockerLabel);
   }
 
@@ -62,11 +62,11 @@ public class LockerRobotTest {
     Locker locker2 = new Locker(0);
     lockers.add(locker1);
     lockers.add(locker2);
-    LockerRobot lockerRobot = new LockerRobot(lockers);
+    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
     Package aPackage = new Package();
 
     //when,then
-    assertThrows(ErrorMessageException.class, () -> lockerRobot.savePackage(aPackage));
+    assertThrows(ErrorMessageException.class, () -> primaryLockerRobot.savePackage(aPackage));
   }
 
   @Test
@@ -78,12 +78,12 @@ public class LockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    LockerRobot lockerRobot = new LockerRobot(lockers);
+    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
     Package aPackage = new Package();
-    Ticket ticket = lockerRobot.savePackage(aPackage);
+    Ticket ticket = primaryLockerRobot.savePackage(aPackage);
 
     //when
-    Package returnedPackage = lockerRobot.getPackage(ticket);
+    Package returnedPackage = primaryLockerRobot.getPackage(ticket);
 
     //then
     assertEquals(System.identityHashCode(aPackage), System.identityHashCode(returnedPackage));
@@ -98,13 +98,13 @@ public class LockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    LockerRobot lockerRobot = new LockerRobot(lockers);
+    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
     Package aPackage = new Package();
-    Ticket ticket = lockerRobot.savePackage(aPackage);
+    Ticket ticket = primaryLockerRobot.savePackage(aPackage);
     Ticket fakeTicket = new Ticket();
 
     //when,then
-    assertThrows(ErrorMessageException.class, () -> lockerRobot.getPackage(fakeTicket));
+    assertThrows(ErrorMessageException.class, () -> primaryLockerRobot.getPackage(fakeTicket));
   }
 }
 
