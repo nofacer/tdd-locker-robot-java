@@ -1,3 +1,4 @@
+import exceptions.ErrorMessageException;
 import java.util.List;
 import lombok.Data;
 
@@ -23,6 +24,10 @@ public class SmartLockerRobot extends PrimaryLockerRobot {
         idx++;
       }
     }
+    if (tempLocker == null) {
+      throw new ErrorMessageException("All lockers are full");
+    }
+
     Ticket ticket = tempLocker.savePackage(aPackage);
     this.getTicketLockerMap().put(System.identityHashCode(ticket), tempLockerIdx);
     return ticket;

@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import exceptions.ErrorMessageException;
 import java.util.ArrayList;
@@ -48,5 +49,20 @@ class SmartLockerRobotTest {
     assertNotNull(ticket);
     int lockerLabel = smartLockerRobot.getLockerLabelByTicket(ticket);
     assertEquals(1, lockerLabel);
+  }
+
+  @Test
+  void should_throw_error_when_save_pacakge_given_all_lockers_are_full() {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(0);
+    Locker locker2 = new Locker(0);
+    lockers.add(locker1);
+    lockers.add(locker2);
+    SmartLockerRobot smartLockerRobot = new SmartLockerRobot(lockers);
+    Package aPackage = new Package();
+
+    //when,then
+    assertThrows(ErrorMessageException.class, () -> smartLockerRobot.savePackage(aPackage));
   }
 }
