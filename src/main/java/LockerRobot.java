@@ -40,4 +40,8 @@ public class LockerRobot {
     }
     return aPackage;
   }
+
+  public int getLockerLabelByTicket(Ticket ticket) {
+    return this.ticketLockerMap.get(System.identityHashCode(ticket));
+  }
 }

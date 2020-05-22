@@ -28,7 +28,7 @@ public class LockerRobotTest {
 
     //then
     assertNotNull(ticket);
-    int lockerLabel = lockerRobot.getTicketLockerMap().get(System.identityHashCode(ticket));
+    int lockerLabel = lockerRobot.getLockerLabelByTicket(ticket);
     assertEquals(0, lockerLabel);
   }
 
