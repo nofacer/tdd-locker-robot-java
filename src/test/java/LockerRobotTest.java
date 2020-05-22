@@ -24,7 +24,7 @@ public class LockerRobotTest {
     Package aPackage = new Package();
 
     //when
-    Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+    Ticket ticket = lockerRobot.savePackage(aPackage);
 
     //then
     assertNotNull(ticket);
@@ -45,7 +45,7 @@ public class LockerRobotTest {
     Package aPackage = new Package();
 
     //when
-    Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+    Ticket ticket = lockerRobot.savePackage(aPackage);
 
     //then
     assertNotNull(ticket);
@@ -66,7 +66,7 @@ public class LockerRobotTest {
     Package aPackage = new Package();
 
     //when,then
-    assertThrows(ErrorMessageException.class, () -> lockerRobot.savePackageInOrder(aPackage));
+    assertThrows(ErrorMessageException.class, () -> lockerRobot.savePackage(aPackage));
   }
 
   @Test
@@ -80,7 +80,7 @@ public class LockerRobotTest {
     lockers.add(locker2);
     LockerRobot lockerRobot = new LockerRobot(lockers);
     Package aPackage = new Package();
-    Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+    Ticket ticket = lockerRobot.savePackage(aPackage);
 
     //when
     Package returnedPackage = lockerRobot.getPackage(ticket);
@@ -100,7 +100,7 @@ public class LockerRobotTest {
     lockers.add(locker2);
     LockerRobot lockerRobot = new LockerRobot(lockers);
     Package aPackage = new Package();
-    Ticket ticket = lockerRobot.savePackageInOrder(aPackage);
+    Ticket ticket = lockerRobot.savePackage(aPackage);
     Ticket fakeTicket = new Ticket();
 
     //when,then

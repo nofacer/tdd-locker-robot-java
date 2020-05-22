@@ -14,7 +14,7 @@ public class LockerRobot {
     this.lockers = lockers;
   }
 
-  public Ticket savePackageInOrder(Package aPackage) throws exceptions.ErrorMessageException {
+  public Ticket savePackage(Package aPackage) throws exceptions.ErrorMessageException {
     int i = 0;
     for (Locker locker : lockers) {
       if (locker.getCapacity() > 0) {
