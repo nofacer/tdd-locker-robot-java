@@ -85,4 +85,22 @@ class SmartLockerRobotTest {
     //then
     assertEquals(System.identityHashCode(aPackage), System.identityHashCode(returnedPackage));
   }
+
+  @Test
+  public void should_throw_error_when_user_use_ticket_given_user_has_an_invalid_ticket()
+      throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(5);
+    Locker locker2 = new Locker(3);
+    lockers.add(locker1);
+    lockers.add(locker2);
+    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
+    Package aPackage = new Package();
+    Ticket ticket = primaryLockerRobot.savePackage(aPackage);
+    Ticket fakeTicket = new Ticket();
+
+    //when,then
+    assertThrows(ErrorMessageException.class, () -> primaryLockerRobot.getPackage(fakeTicket));
+  }
 }
