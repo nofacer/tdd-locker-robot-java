@@ -19,7 +19,7 @@ public class PrimaryLockerRobot {
     for (Locker locker : lockers) {
       if (locker.getCapacity() > 0) {
         Ticket ticket = locker.savePackage(aPackage);
-        ticketLockerMap.put(System.identityHashCode(ticket), i);
+        bindTicketWithLabel(ticket, i);
         return ticket;
       }
       i++;
@@ -43,5 +43,9 @@ public class PrimaryLockerRobot {
 
   public int getLockerLabelByTicket(Ticket ticket) {
     return this.ticketLockerMap.get(System.identityHashCode(ticket));
+  }
+
+  public void bindTicketWithLabel(Ticket ticket, int label) {
+    this.getTicketLockerMap().put(System.identityHashCode(ticket), label);
   }
 }

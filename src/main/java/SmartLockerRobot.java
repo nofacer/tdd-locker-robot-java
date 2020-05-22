@@ -14,7 +14,7 @@ public class SmartLockerRobot extends PrimaryLockerRobot {
   public Ticket savePackage(Package aPackage) throws exceptions.ErrorMessageException {
     LabeledLocker labeledLocker = getAvailableLocker(this.getLockers());
     Ticket ticket = labeledLocker.getLocker().savePackage(aPackage);
-    this.getTicketLockerMap().put(System.identityHashCode(ticket), labeledLocker.getLabel());
+    bindTicketWithLabel(ticket, labeledLocker.getLabel());
     return ticket;
   }
 
@@ -36,4 +36,5 @@ public class SmartLockerRobot extends PrimaryLockerRobot {
     }
     return new LabeledLocker(tempLockerIdx, tempLocker);
   }
+
 }
