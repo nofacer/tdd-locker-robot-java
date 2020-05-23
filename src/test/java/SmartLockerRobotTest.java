@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class SmartLockerRobotTest {
 
   @Test
-  void should_save_to_first_locker_and_give_a_ticket_when_user_save_package_given_first_locker_capacity_larger_than_second()
+  void should_save_to_first_locker_and_give_a_ticket_when_user_save_package_given_first_locker_last_capacity_larger_than_second()
       throws ErrorMessageException {
     //given
     List<Locker> lockers = new ArrayList<>();
@@ -31,7 +31,7 @@ class SmartLockerRobotTest {
   }
 
   @Test
-  void should_save_to_second_locker_and_give_a_ticket_when_user_save_package_given_first_locker_capacity_less_than_second()
+  void should_save_to_second_locker_and_give_a_ticket_when_user_save_package_given_first_locker_last_capacity_less_than_second()
       throws ErrorMessageException {
     //given
     List<Locker> lockers = new ArrayList<>();
@@ -52,7 +52,7 @@ class SmartLockerRobotTest {
   }
 
   @Test
-  void should_give_a_ticket_when_user_save_package_given_first_locker_capacity_equal_to_second()
+  void should_give_a_ticket_when_user_save_package_given_first_locker_last_capacity_equal_to_second()
       throws ErrorMessageException {
     //given
     List<Locker> lockers = new ArrayList<>();
