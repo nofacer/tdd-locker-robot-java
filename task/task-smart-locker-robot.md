@@ -10,3 +10,10 @@
 
 * Given a user has a valid ticket, when this user withdraws the package using ticket, then the locker-robot should send package back.
 * Given a user has an invalid ticket, when this user withdraws the package using ticket, then the locker-robot should throw error message.
+
+
+## Comments for Refactor:
+
+- Need to unbind locker and ticket
+- Test for functions: e.g. bindLockerWithTicket ?
+- PrimaryLockerRobot and SmartLockerRobot should use interface like lockerRobot instead of extending class. (Relationship btw these robots)

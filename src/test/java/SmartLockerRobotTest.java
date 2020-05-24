@@ -94,7 +94,7 @@ class SmartLockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
+    SmartLockerRobot primaryLockerRobot = new SmartLockerRobot(lockers);
     Package aPackage = new Package();
     Ticket ticket = primaryLockerRobot.savePackage(aPackage);
 
@@ -114,7 +114,7 @@ class SmartLockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(lockers);
+    SmartLockerRobot primaryLockerRobot = new SmartLockerRobot(lockers);
     Package aPackage = new Package();
     Ticket ticket = primaryLockerRobot.savePackage(aPackage);
     Ticket fakeTicket = new Ticket();
