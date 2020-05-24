@@ -94,12 +94,12 @@ class SmartLockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    SmartLockerRobot primaryLockerRobot = new SmartLockerRobot(lockers);
+    SmartLockerRobot robot = new SmartLockerRobot(lockers);
     Package aPackage = new Package();
-    Ticket ticket = primaryLockerRobot.savePackage(aPackage);
+    Ticket ticket = robot.savePackage(aPackage);
 
     //when
-    Package returnedPackage = primaryLockerRobot.getPackage(ticket);
+    Package returnedPackage = robot.getPackage(ticket);
 
     //then
     assertEquals(System.identityHashCode(aPackage), System.identityHashCode(returnedPackage));
@@ -114,12 +114,12 @@ class SmartLockerRobotTest {
     Locker locker2 = new Locker(3);
     lockers.add(locker1);
     lockers.add(locker2);
-    SmartLockerRobot primaryLockerRobot = new SmartLockerRobot(lockers);
+    SmartLockerRobot robot = new SmartLockerRobot(lockers);
     Package aPackage = new Package();
-    Ticket ticket = primaryLockerRobot.savePackage(aPackage);
+    Ticket ticket = robot.savePackage(aPackage);
     Ticket fakeTicket = new Ticket();
 
     //when,then
-    assertThrows(ErrorMessageException.class, () -> primaryLockerRobot.getPackage(fakeTicket));
+    assertThrows(ErrorMessageException.class, () -> robot.getPackage(fakeTicket));
   }
 }

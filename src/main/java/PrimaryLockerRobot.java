@@ -34,6 +34,7 @@ public class PrimaryLockerRobot {
       throw new ErrorMessageException("The ticket is invalid");
     } else {
       aPackage = locker.getPackage(ticket);
+      unbindTicketWithLabel(ticket, locker);
     }
     return aPackage;
   }
@@ -44,5 +45,9 @@ public class PrimaryLockerRobot {
 
   public void bindTicketWithLabel(Ticket ticket, Locker locker) {
     this.getTicketLockerMap().put(System.identityHashCode(ticket), locker);
+  }
+
+  public void unbindTicketWithLabel(Ticket ticket, Locker locker) {
+    this.getTicketLockerMap().remove(System.identityHashCode(ticket));
   }
 }
