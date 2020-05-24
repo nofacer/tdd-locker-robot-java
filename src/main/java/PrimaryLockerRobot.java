@@ -5,7 +5,7 @@ import java.util.Map;
 import lombok.Data;
 
 @Data
-public class PrimaryLockerRobot {
+public class PrimaryLockerRobot implements LockerRobot {
 
   private List<Locker> lockers;
   private Map<Integer, Locker> ticketLockerMap = new HashMap<>();
@@ -14,6 +14,7 @@ public class PrimaryLockerRobot {
     this.lockers = lockers;
   }
 
+  @Override
   public Ticket savePackage(Package aPackage) throws exceptions.ErrorMessageException {
     int i = 0;
     for (Locker locker : lockers) {
@@ -27,6 +28,7 @@ public class PrimaryLockerRobot {
     throw new ErrorMessageException("All lockers are full");
   }
 
+  @Override
   public Package getPackage(Ticket ticket) throws ErrorMessageException {
     Package aPackage = null;
     Locker locker = this.ticketLockerMap.get(System.identityHashCode(ticket));
@@ -34,7 +36,7 @@ public class PrimaryLockerRobot {
       throw new ErrorMessageException("The ticket is invalid");
     } else {
       aPackage = locker.getPackage(ticket);
-      unbindTicketWithLabel(ticket, locker);
+      unbindTicketWithLabel(ticket);
     }
     return aPackage;
   }
@@ -43,11 +45,11 @@ public class PrimaryLockerRobot {
     return this.ticketLockerMap.get(System.identityHashCode(ticket));
   }
 
-  public void bindTicketWithLabel(Ticket ticket, Locker locker) {
+  private void bindTicketWithLabel(Ticket ticket, Locker locker) {
     this.getTicketLockerMap().put(System.identityHashCode(ticket), locker);
   }
 
-  public void unbindTicketWithLabel(Ticket ticket, Locker locker) {
+  private void unbindTicketWithLabel(Ticket ticket) {
     this.getTicketLockerMap().remove(System.identityHashCode(ticket));
   }
 }

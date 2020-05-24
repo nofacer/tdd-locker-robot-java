@@ -1,13 +1,18 @@
 import exceptions.ErrorMessageException;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import lombok.Data;
 
 @Data
-public class SmartLockerRobot extends PrimaryLockerRobot {
-
+public class SmartLockerRobot implements LockerRobot {
+  private List<Locker> lockers;
+  private Map<Integer, Locker> ticketLockerMap = new HashMap<>();
 
   public SmartLockerRobot(List<Locker> lockers) {
-    super(lockers);
+      this.lockers = lockers;
   }
 
   @Override
@@ -16,6 +21,19 @@ public class SmartLockerRobot extends PrimaryLockerRobot {
     Ticket ticket = locker.savePackage(aPackage);
     bindTicketWithLabel(ticket, locker);
     return ticket;
+  }
+
+  @Override
+  public Package getPackage(Ticket ticket) throws ErrorMessageException {
+    Package aPackage = null;
+    Locker locker = this.ticketLockerMap.get(System.identityHashCode(ticket));
+    if (locker == null) {
+      throw new ErrorMessageException("The ticket is invalid");
+    } else {
+      aPackage = locker.getPackage(ticket);
+      unbindTicketWithLabel(ticket);
+    }
+    return aPackage;
   }
 
   private Locker getAvailableLocker(List<Locker> lockers) throws ErrorMessageException {
@@ -33,6 +51,18 @@ public class SmartLockerRobot extends PrimaryLockerRobot {
       throw new ErrorMessageException("All lockers are full");
     }
     return tempLocker;
+  }
+
+  public Locker getLockerByTicket(Ticket ticket) {
+    return this.ticketLockerMap.get(System.identityHashCode(ticket));
+  }
+
+  private void bindTicketWithLabel(Ticket ticket, Locker locker) {
+    this.getTicketLockerMap().put(System.identityHashCode(ticket), locker);
+  }
+
+  private void unbindTicketWithLabel(Ticket ticket) {
+    this.getTicketLockerMap().remove(System.identityHashCode(ticket));
   }
 
 }
