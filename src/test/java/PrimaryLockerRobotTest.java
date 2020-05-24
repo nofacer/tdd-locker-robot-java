@@ -28,8 +28,8 @@ public class PrimaryLockerRobotTest {
 
     //then
     assertNotNull(ticket);
-    int lockerLabel = primaryLockerRobot.getLockerLabelByTicket(ticket);
-    assertEquals(0, lockerLabel);
+    Locker locker = primaryLockerRobot.getLockerByTicket(ticket);
+    assertEquals(System.identityHashCode(locker1), System.identityHashCode(locker));
   }
 
   @Test
@@ -49,8 +49,8 @@ public class PrimaryLockerRobotTest {
 
     //then
     assertNotNull(ticket);
-    int lockerLabel = primaryLockerRobot.getTicketLockerMap().get(System.identityHashCode(ticket));
-    assertEquals(1, lockerLabel);
+    Locker locker = primaryLockerRobot.getTicketLockerMap().get(System.identityHashCode(ticket));
+    assertEquals(System.identityHashCode(locker2), System.identityHashCode(locker));
   }
 
   @Test

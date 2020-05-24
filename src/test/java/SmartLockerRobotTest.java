@@ -26,8 +26,8 @@ class SmartLockerRobotTest {
 
     //then
     assertNotNull(ticket);
-    int lockerLabel = smartLockerRobot.getLockerLabelByTicket(ticket);
-    assertEquals(0, lockerLabel);
+    Locker locker = smartLockerRobot.getLockerByTicket(ticket);
+    assertEquals(System.identityHashCode(locker1), System.identityHashCode(locker));
   }
 
   @Test
@@ -47,8 +47,8 @@ class SmartLockerRobotTest {
 
     //then
     assertNotNull(ticket);
-    int lockerLabel = smartLockerRobot.getLockerLabelByTicket(ticket);
-    assertEquals(1, lockerLabel);
+    Locker locker = smartLockerRobot.getLockerByTicket(ticket);
+    assertEquals(System.identityHashCode(locker2), System.identityHashCode(locker));
   }
 
   @Test

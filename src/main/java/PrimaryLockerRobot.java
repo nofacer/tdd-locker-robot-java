@@ -8,7 +8,7 @@ import lombok.Data;
 public class PrimaryLockerRobot {
 
   private List<Locker> lockers;
-  private Map<Integer, Integer> ticketLockerMap = new HashMap<>();
+  private Map<Integer, Locker> ticketLockerMap = new HashMap<>();
 
   public PrimaryLockerRobot(List<Locker> lockers) {
     this.lockers = lockers;
@@ -19,7 +19,7 @@ public class PrimaryLockerRobot {
     for (Locker locker : lockers) {
       if (locker.getCapacity() > 0) {
         Ticket ticket = locker.savePackage(aPackage);
-        bindTicketWithLabel(ticket, i);
+        bindTicketWithLabel(ticket, locker);
         return ticket;
       }
       i++;
@@ -41,11 +41,11 @@ public class PrimaryLockerRobot {
     return aPackage;
   }
 
-  public int getLockerLabelByTicket(Ticket ticket) {
+  public Locker getLockerByTicket(Ticket ticket) {
     return this.ticketLockerMap.get(System.identityHashCode(ticket));
   }
 
-  public void bindTicketWithLabel(Ticket ticket, int label) {
-    this.getTicketLockerMap().put(System.identityHashCode(ticket), label);
+  public void bindTicketWithLabel(Ticket ticket, Locker locker) {
+    this.getTicketLockerMap().put(System.identityHashCode(ticket), locker);
   }
 }
