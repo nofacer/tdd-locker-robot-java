@@ -29,14 +29,11 @@ public class PrimaryLockerRobot {
 
   public Package getPackage(Ticket ticket) throws ErrorMessageException {
     Package aPackage = null;
-    for (Locker locker : lockers) {
-      try {
-        aPackage = locker.getPackage(ticket);
-      } catch (ErrorMessageException ignored) {
-      }
-    }
-    if (aPackage == null) {
+    Locker locker = this.ticketLockerMap.get(System.identityHashCode(ticket));
+    if (locker == null) {
       throw new ErrorMessageException("The ticket is invalid");
+    } else {
+      aPackage = locker.getPackage(ticket);
     }
     return aPackage;
   }
