@@ -32,4 +32,31 @@ public class SuperLockerRobotTest {
     Locker locker = superLockerRobot.getLockerByTicket(ticket);
     assertEquals(System.identityHashCode(locker1), System.identityHashCode(locker));
   }
+
+  @Test
+  void should_save_to_second_locker_and_give_a_ticket_when_user_save_package_given_first_locker_has_lower_vacancy_ratio_than_second()
+          throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(4);
+    locker1.savePackage(new Package());
+    locker1.savePackage(new Package());
+    Locker locker2 = new Locker(3);
+    locker2.savePackage(new Package());
+    lockers.add(locker1);
+    lockers.add(locker2);
+    Package aPackage = new Package();
+
+    SuperLockerRobot superLockerRobot = new SuperLockerRobot(lockers);
+
+    //when
+    Ticket ticket = superLockerRobot.savePackage(aPackage);
+
+    //then
+    assertNotNull(ticket);
+    Locker locker = superLockerRobot.getLockerByTicket(ticket);
+    assertEquals(System.identityHashCode(locker2), System.identityHashCode(locker));
+  }
+
+
 }
