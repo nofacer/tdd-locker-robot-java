@@ -9,4 +9,5 @@
 ## Get packages
 
 * Given a user has a valid ticket, when this user withdraws the package using ticket, then the locker-robot should send package back.
-* Given a user has an invalid ticket, when this user withdraws the package using ticket, then the locker-robot should throw error message.
+* Given a user has fake ticket, when this user withdraws the package using ticket, then the locker-robot should throw error message.
+* Given a ticket has been used, when user withdraws package using the same ticket, then the locker-robot should throw error message.

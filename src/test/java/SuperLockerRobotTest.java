@@ -118,7 +118,7 @@ public class SuperLockerRobotTest {
   }
 
   @Test
-  public void should_throw_error_when_user_use_ticket_given_user_has_an_invalid_ticket()
+  public void should_throw_error_when_user_use_ticket_given_user_has_a_fake_ticket()
           throws ErrorMessageException {
     //given
     List<Locker> lockers = new ArrayList<>();
@@ -133,6 +133,24 @@ public class SuperLockerRobotTest {
 
     //when,then
     assertThrows(ErrorMessageException.class, () -> robot.getPackage(fakeTicket));
+  }
+
+  @Test
+  public void should_throw_error_when_user_use_ticket_given_the_ticket_was_used_before()
+          throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(5);
+    Locker locker2 = new Locker(3);
+    lockers.add(locker1);
+    lockers.add(locker2);
+    SuperLockerRobot robot = new SuperLockerRobot(lockers);
+    Package aPackage = new Package();
+    Ticket ticket = robot.savePackage(aPackage);
+    robot.getPackage(ticket);
+
+    //when,then
+    assertThrows(ErrorMessageException.class, () -> robot.getPackage(ticket));
   }
 
 }
