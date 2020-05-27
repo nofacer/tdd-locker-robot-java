@@ -58,5 +58,26 @@ public class SuperLockerRobotTest {
     assertEquals(System.identityHashCode(locker2), System.identityHashCode(locker));
   }
 
+  @Test
+  void should_give_a_ticket_when_user_save_package_given_two_lockers_have_same_vacancy_ratio()
+          throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(2);
+    locker1.savePackage(new Package());
+    Locker locker2 = new Locker(4);
+    locker2.savePackage(new Package());
+    locker2.savePackage(new Package());
+    lockers.add(locker1);
+    lockers.add(locker2);
 
+    SuperLockerRobot superLockerRobot = new SuperLockerRobot(lockers);
+    Package aPackage = new Package();
+
+    //when
+    Ticket ticket = superLockerRobot.savePackage(aPackage);
+
+    //then
+    assertNotNull(ticket);
+  }
 }
