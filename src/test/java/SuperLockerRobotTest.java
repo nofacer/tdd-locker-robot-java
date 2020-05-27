@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SuperLockerRobotTest {
   @Test
@@ -79,5 +78,22 @@ public class SuperLockerRobotTest {
 
     //then
     assertNotNull(ticket);
+  }
+
+  @Test
+  void should_throw_error_when_save_pacakge_given_all_lockers_are_full() throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(1);
+    locker1.savePackage(new Package());
+    Locker locker2 = new Locker(1);
+    locker2.savePackage(new Package());
+    lockers.add(locker1);
+    lockers.add(locker2);
+    SuperLockerRobot superLockerRobot = new SuperLockerRobot(lockers);
+    Package aPackage = new Package();
+
+    //when,then
+    assertThrows(ErrorMessageException.class, () -> superLockerRobot.savePackage(aPackage));
   }
 }
