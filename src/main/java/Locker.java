@@ -6,11 +6,14 @@ import lombok.Data;
 @Data
 public class Locker {
 
+  private int initialCapacity;
   private int capacity;
+  private double vacancyRatio;
   private Map<Integer, Package> record = new HashMap<>();
 
   public Locker(int capacity) {
     this.capacity = capacity;
+    this.initialCapacity = capacity;
   }
 
   public Ticket savePackage(Package aPackage) throws ErrorMessageException {
@@ -20,6 +23,7 @@ public class Locker {
     Ticket ticket = new Ticket();
     this.record.put(System.identityHashCode(ticket), aPackage);
     this.capacity -= 1;
+    this.vacancyRatio = (double) this.capacity / this.initialCapacity;
     return ticket;
   }
 
@@ -30,6 +34,7 @@ public class Locker {
     }
     record.remove(System.identityHashCode(ticket));
     this.capacity += 1;
+    this.vacancyRatio = (double) this.capacity / this.initialCapacity;
     return aPackage;
   }
 }
