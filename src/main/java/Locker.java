@@ -8,7 +8,7 @@ public class Locker {
 
   private int initialCapacity;
   private int capacity;
-  private double vacancyRatio;
+  private double vacancyRatio = 1.0;
   private Map<Integer, Package> record = new HashMap<>();
 
   public Locker(int capacity) {

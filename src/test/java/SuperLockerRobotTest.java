@@ -96,4 +96,24 @@ public class SuperLockerRobotTest {
     //when,then
     assertThrows(ErrorMessageException.class, () -> superLockerRobot.savePackage(aPackage));
   }
+
+  @Test
+  public void should_give_package_back_when_user_use_ticket_given_user_has_a_valid_ticket()
+          throws ErrorMessageException {
+    //given
+    List<Locker> lockers = new ArrayList<>();
+    Locker locker1 = new Locker(5);
+    Locker locker2 = new Locker(3);
+    lockers.add(locker1);
+    lockers.add(locker2);
+    SuperLockerRobot robot = new SuperLockerRobot(lockers);
+    Package aPackage = new Package();
+    Ticket ticket = robot.savePackage(aPackage);
+
+    //when
+    Package returnedPackage = robot.getPackage(ticket);
+
+    //then
+    assertEquals(System.identityHashCode(aPackage), System.identityHashCode(returnedPackage));
+  }
 }

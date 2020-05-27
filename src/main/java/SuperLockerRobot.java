@@ -24,7 +24,15 @@ public class SuperLockerRobot  implements LockerRobot{
 
   @Override
   public Package getPackage(Ticket ticket) throws ErrorMessageException {
-    return null;
+    Package aPackage = null;
+    Locker locker = this.ticketLockerMap.get(System.identityHashCode(ticket));
+    if (locker == null) {
+      throw new ErrorMessageException("The ticket is invalid");
+    } else {
+      aPackage = locker.getPackage(ticket);
+      unbindTicketWithLabel(ticket);
+    }
+    return aPackage;
   }
 
   private Locker getAvailableLocker(List<Locker> lockers) throws ErrorMessageException {
@@ -48,6 +56,10 @@ public class SuperLockerRobot  implements LockerRobot{
 
   private void bindTicketWithLabel(Ticket ticket, Locker locker) {
     this.getTicketLockerMap().put(System.identityHashCode(ticket), locker);
+  }
+
+  private void unbindTicketWithLabel(Ticket ticket) {
+    this.getTicketLockerMap().remove(System.identityHashCode(ticket));
   }
 
 }
