@@ -13,10 +13,9 @@ public class SuperLockerRobotTest {
     //given
     List<Locker> lockers = new ArrayList<>();
     Locker locker1 = new Locker(2);
-    locker1.savePackage(new Package());
+    locker1.setVacancyRatio(0.5);
     Locker locker2 = new Locker(3);
-    locker2.savePackage(new Package());
-    locker2.savePackage(new Package());
+    locker2.setVacancyRatio(0.33);
     lockers.add(locker1);
     lockers.add(locker2);
 
@@ -38,10 +37,9 @@ public class SuperLockerRobotTest {
     //given
     List<Locker> lockers = new ArrayList<>();
     Locker locker1 = new Locker(4);
-    locker1.savePackage(new Package());
-    locker1.savePackage(new Package());
+    locker1.setVacancyRatio(0.25);
     Locker locker2 = new Locker(3);
-    locker2.savePackage(new Package());
+    locker2.setVacancyRatio(0.33);
     lockers.add(locker1);
     lockers.add(locker2);
     Package aPackage = new Package();
@@ -63,10 +61,9 @@ public class SuperLockerRobotTest {
     //given
     List<Locker> lockers = new ArrayList<>();
     Locker locker1 = new Locker(2);
-    locker1.savePackage(new Package());
+    locker1.setVacancyRatio(0.25);
     Locker locker2 = new Locker(4);
-    locker2.savePackage(new Package());
-    locker2.savePackage(new Package());
+    locker2.setVacancyRatio(0.5);
     lockers.add(locker1);
     lockers.add(locker2);
 
@@ -85,9 +82,9 @@ public class SuperLockerRobotTest {
     //given
     List<Locker> lockers = new ArrayList<>();
     Locker locker1 = new Locker(1);
-    locker1.savePackage(new Package());
+    locker1.setVacancyRatio(0);
     Locker locker2 = new Locker(1);
-    locker2.savePackage(new Package());
+    locker2.setVacancyRatio(0);
     lockers.add(locker1);
     lockers.add(locker2);
     SuperLockerRobot superLockerRobot = new SuperLockerRobot(lockers);
